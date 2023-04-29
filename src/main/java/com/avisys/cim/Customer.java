@@ -1,4 +1,4 @@
-package com.avisys.cim;
+ package com.avisys.cim;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,8 +11,10 @@ import jakarta.persistence.Table;
 @Table(name = "CUSTOMER")
 public class Customer {
 
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	private Long id;
 
 	@Column(name = "FIRST_NAME", nullable = false)
@@ -26,6 +28,17 @@ public class Customer {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Customer() {
+		
+	}
+
+	public Customer(String firstName, String lastName, String mobileNumber) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mobileNumber = mobileNumber;
 	}
 
 	public void setId(Long id) {

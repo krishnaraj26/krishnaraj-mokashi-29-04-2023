@@ -1,0 +1,37 @@
+2. Adding Customer functionality
+
+url=http://localhost:8080/CustomerInfoManagementApplication/customer/add
+
+//adding successful customer with unique mobile number
+request Body = 
+{
+
+    "firstName":"Krish",
+    "lastName":"Mokashi",
+    "mobileNumber":"8550965899"
+
+}
+
+response Body= {
+    "id": 5,
+    "firstName": "Krish",
+    "lastName": "Mokashi",
+    "mobileNumber": "8550965899"
+}
+
+//error occuring as puttiogh same mobileNumber again
+Request Body=
+{
+
+    "firstName":"Krish",
+    "lastName":"Mokashi",
+    "mobileNumber":"8550965899"
+
+}
+
+response body= 
+{
+    "message": "Customer Insertion Failed",
+    "errorDetails": "could not execute statement; SQL [n/a]; constraint [\"PUBLIC.CUSTOMER_UK1_INDEX_5 ON PUBLIC.CUSTOMER(MOBILE_NUMBER NULLS FIRST) VALUES ( /* 5 */ '8550965899' )\"; SQL statement:\ninsert into customer (id, first_name, last_name, mobile_number) values (default, ?, ?, ?) [23505-214]]",
+    "timeStamp": "2023-04-30T00:48:11.9773098"
+}
