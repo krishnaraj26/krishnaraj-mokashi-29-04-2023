@@ -19,7 +19,7 @@ response Body= {
     "mobileNumber": "8550965899"
 }
 
-//error occuring as puttiogh same mobileNumber again
+//error occuring as putting same mobileNumber again
 Request Body=
 {
 
@@ -34,4 +34,24 @@ response body=
     "message": "Customer Insertion Failed",
     "errorDetails": "could not execute statement; SQL [n/a]; constraint [\"PUBLIC.CUSTOMER_UK1_INDEX_5 ON PUBLIC.CUSTOMER(MOBILE_NUMBER NULLS FIRST) VALUES ( /* 5 */ '8550965899' )\"; SQL statement:\ninsert into customer (id, first_name, last_name, mobile_number) values (default, ?, ?, ?) [23505-214]]",
     "timeStamp": "2023-04-30T00:48:11.9773098"
+}
+
+
+5.Deleting Customer by his Mobile Number 
+
+url = http://localhost:8080/CustomerInfoManagementApplication/customer/delete/8550965897
+
+if mobile number is found then it will show message as 
+
+response body = 
+{
+    "message": "Customer deleted having id as 1 having mobile No 9111111111"
+}
+
+if mobile Number is not found then it will show error as no mobile number is found
+response body = 
+{
+    "message": "Mobile Number not found",
+    "errorDetails": "Cannot invoke \"com.avisys.cim.Customer.getId()\" because the return value of \"com.avisys.cim.Repository.CustomerRepository.findByMobileNumber(String)\" is null",
+    "timeStamp": "2023-04-30T01:58:51.2736929"
 }

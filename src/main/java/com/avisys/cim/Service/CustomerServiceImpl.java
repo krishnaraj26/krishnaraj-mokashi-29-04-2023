@@ -21,11 +21,16 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerRepository.save(customer);
 		
 		
+	}
+	@Override
+	public String DeleteByMobileNumber(String mobileNo) {
+		//calling custom Finder Method to get the id of customer by his mobile number
 		
-	   
+		Long id = customerRepository.findByMobileNumber(mobileNo).getId();
 		
+		customerRepository.deleteById(id);//deleting the instance of customer by his id
 		
-		
+		return "Customer deleted having id as "+id +" having mobile No"+mobileNo;
 	}
 
 }
