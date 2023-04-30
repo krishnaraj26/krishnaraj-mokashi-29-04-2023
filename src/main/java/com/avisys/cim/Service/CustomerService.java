@@ -1,6 +1,7 @@
 package com.avisys.cim.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.avisys.cim.Customer;
 
@@ -11,6 +12,8 @@ public interface CustomerService {
 	
 	//method to delete Customer by mobile Number from database
 	String DeleteByMobileNumber(String mobileNo);
+	
+	Customer findCustomer(Long id,String mobileNumber);
 	
 	List<Customer> findCustomerByFirstName(String firstName);
 	

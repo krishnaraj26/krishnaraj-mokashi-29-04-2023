@@ -185,3 +185,18 @@ response body =
     "errorDetails": "Cannot invoke \"com.avisys.cim.Customer.getId()\" because the return value of \"com.avisys.cim.Repository.CustomerRepository.findByMobileNumber(String)\" is null",
     "timeStamp": "2023-04-30T01:58:51.2736929"
 }
+
+
+6.Updating mobile number of given id 
+
+url = http://localhost:8080/CustomerInfoManagementApplication/customer/update/1?mobileNumber=8550965898
+
+after successful updation customer with new mobile no is shown 
+
+sample response=
+{
+    "id": 1,
+    "firstName": "Alan",
+    "lastName": "Smith",
+    "mobileNumber": "8550965898"
+}

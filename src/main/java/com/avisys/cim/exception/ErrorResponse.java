@@ -31,6 +31,12 @@ public class ErrorResponse {
 		timeStamp=LocalDateTime.now();
 	
 	}
+	
+	
+	public ErrorResponse(String message) {
+		super();
+		this.message = message;
+	}
 	public ErrorResponse() {
 		super();
 	}

@@ -1,5 +1,7 @@
 package com.avisys.cim.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -115,6 +118,20 @@ public class CustomerController {
 			return new ResponseEntity<>(new ErrorResponse("customer not found",e.getMessage()),HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	// functionality to update mobile number of given id with given new mobile number
+	@PutMapping("/update/{id}")
+	public  ResponseEntity<?>  updateMobileNumber(@PathVariable Long id, @RequestParam String mobileNumber)
+	{
+		 Customer c  = customerService.findCustomer(id,mobileNumber);
+		 if(c!=null)
+		return new ResponseEntity<>(c,HttpStatus.OK );
+		 else 
+		 return new ResponseEntity<>(new ErrorResponse("Customer not found"),HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	
+	
 	
 	
 	

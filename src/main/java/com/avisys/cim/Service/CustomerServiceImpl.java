@@ -1,12 +1,15 @@
 package com.avisys.cim.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avisys.cim.Customer;
 import com.avisys.cim.Repository.CustomerRepository;
+import com.avisys.cim.exception.ErrorResponse;
 
 import jakarta.transaction.Transactional;
 
@@ -82,5 +85,14 @@ public class CustomerServiceImpl implements CustomerService {
 		//finding all customers
 		return customerRepository.findAll();
 	}
-
+	@Override
+	public Customer findCustomer(Long id, String mobileNumber) {
+		// TODO Auto-generated method stub
+		Customer c = customerRepository.findById(id).get();
+		c.setMobileNumber(mobileNumber);
+		customerRepository.save(c);
+		return c;
+	}
+	
+	
 }
