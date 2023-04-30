@@ -1,3 +1,133 @@
+1. Get Customer information over an REST API call
+    * Any third-party application should be able to get Customer related information in JSON format.
+    * The third-party should be able to request either all customer or filter information using any or all of the parameters like first name, last name and mobile number.
+    * First name and Last name should be able to return result which partially match. Example if we have a user with first name Kathy then if we get request using first name filter criteria as "Kat", "aTHY" or "Ath" then Kathy should be returned.
+
+1.a :get customer information given only firstname like "Joe"
+
+url= http://localhost:8080/CustomerInfoManagementApplication/customer/search?firstName=Joe
+
+sample Response= [
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    }
+]
+
+1.b :get customer information given only lastname like "Turi"
+
+url=http://localhost:8080/CustomerInfoManagementApplication/customer/search?lastName=Turi
+
+sample response = [
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    }
+]
+
+1.c :get customer information given only mobileNumber like "9111111112"
+
+url= http://localhost:8080/CustomerInfoManagementApplication/customer/search?mobileNumber=9111111112
+
+sample response = [
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    }
+]
+
+1.d: get customer information given only firstname like "Joe" and lastName="Turi"
+ 
+ url= http://localhost:8080/CustomerInfoManagementApplication/customer/search?firstName=Joe&lastName=Turi
+
+sample response =[
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    }
+]
+
+1.e: get customer information given only firstname like "Joe" and mobileNumber="9111111112"
+
+url = http://localhost:8080/CustomerInfoManagementApplication/customer/search?firstName=Joe&mobileNumber=9111111112
+
+
+sample response =[
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    }
+]
+
+1.f: get customer information given only lastname like "Turi" and mobileNumber="9111111112"
+
+url = http://localhost:8080/CustomerInfoManagementApplication/customer/search?lastName=Turi&mobileNumber=9111111112
+
+sample response =[
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    }
+]
+
+1.g : get customer information given firstName like "Joe" and lastname like "Turi" and mobileNumber="9111111112"
+
+url = http://localhost:8080/CustomerInfoManagementApplication/customer/search?firstName=Joe&lastName=Turi&mobileNumber=9111111112
+
+sample response =[
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    }
+]
+
+1.h : finding all customers
+
+url = http://localhost:8080/CustomerInfoManagementApplication/customer/search
+
+sample response = [
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    },
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith",
+        "mobileNumber": "9111111113"
+    },
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra",
+        "mobileNumber": "9111111114"
+    }
+]
+
+
+
 2. Adding Customer functionality
 
 url=http://localhost:8080/CustomerInfoManagementApplication/customer/add

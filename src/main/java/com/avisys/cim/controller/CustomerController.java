@@ -2,13 +2,14 @@ package com.avisys.cim.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avisys.cim.Customer;
@@ -55,13 +56,64 @@ public class CustomerController {
 		{
 			//if mobile number was not found then it will throw error of no mobile number found
 			return new ResponseEntity<>(new ErrorResponse("Mobile Number not found",e.getMessage()),HttpStatus.INTERNAL_SERVER_ERROR);
+		}	
+		
+	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<?> findByFirstName(@RequestParam(required = false) String firstName
+			,@RequestParam(required = false) String lastName , @RequestParam(required = false) String mobileNumber
+			
+			)
+	{
+		try {
+			//finding customer given firstname , lastname, and mobilenumber
+			if(firstName!=null && lastName!=null && mobileNumber!=null)
+			{
+				return new ResponseEntity<>(customerService.findCustomerByFirstNameAndlastNameAndMobileNumber(firstName, lastName, mobileNumber),HttpStatus.OK);
+			}
+			
+			
+			else if(firstName!=null && lastName!=null)
+			{
+				//finding customer given firstname , lastname
+				return new ResponseEntity<>(customerService.findCustomerByFirstNameAndLastName(firstName,lastName),HttpStatus.OK);
+		    }
+			else if(firstName!=null && mobileNumber!=null)
+			{//finding customer given firstname , mobileNumber
+				return new ResponseEntity<>(customerService.findCustomerByFirstNameAndMobileNumber(firstName,mobileNumber),HttpStatus.OK);
+
+			}
+			else if (lastName!=null && mobileNumber!=null)
+			{
+				//finding customer given lastname , mobileNumber
+				return new ResponseEntity<>(customerService.findCustomerBylastNameAndMobileNumber(lastName, mobileNumber),HttpStatus.OK);
+			}
+			else if(lastName!=null)
+			{
+				//finding customer given lastname 
+				return new ResponseEntity<>(customerService.findCustomerByLastName(lastName),HttpStatus.OK);
+
+			}
+			else if(firstName!=null)
+			{
+				//finding customer given firstname 
+				return new ResponseEntity<>(customerService.findCustomerByFirstName(firstName),HttpStatus.OK);
+			}
+			else if(mobileNumber!=null)
+			{
+				
+				//finding customer given mobikenumber
+				return new ResponseEntity<>(customerService.findCustomerByMobileNumber(mobileNumber),HttpStatus.OK);
+			}
+			//finding all customers
+			else return new ResponseEntity<>(customerService.findAllCustomers(),HttpStatus.OK);
+			
+		
 		}
-	
-		
-	
-		
-		
-		
+		catch(RuntimeException e) {
+			return new ResponseEntity<>(new ErrorResponse("customer not found",e.getMessage()),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	
